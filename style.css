@@ -2,13 +2,12 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Segoe UI", Arial, sans-serif;
 }
 
 body {
-  background: linear-gradient(135deg, #1b0b0b, #2a0f0f);
-  color: #e6e6e6;
-  scroll-behavior: smooth;
+  background: radial-gradient(circle at top, #3a1212, #120606);
+  color: #f0f0f0;
 }
 
 /* HEADER */
@@ -16,102 +15,63 @@ header {
   position: fixed;
   top: 0;
   width: 100%;
-  padding: 16px 40px;
+  padding: 16px 48px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: rgba(0, 0, 0, 0.6);
-  backdrop-filter: blur(6px);
+  background: linear-gradient(to right, #140606, #2b0e0e);
   z-index: 100;
 }
 
 .logo {
   font-size: 26px;
-  font-weight: bold;
-  color: #ffb3b3;
+  font-weight: 800;
+  letter-spacing: 2px;
+  color: #ffd6d6;
 }
 
 nav a {
-  color: #e6e6e6;
-  margin-left: 18px;
+  color: #ddd;
+  margin-left: 22px;
   text-decoration: none;
-  transition: 0.3s;
+  font-size: 15px;
+  transition: 0.25s;
 }
 
 nav a:hover {
-  color: #ff8080;
+  color: #ff8a8a;
 }
 
 /* SECTIONS */
 section {
-  min-height: 100vh;
-  padding: 120px 40px;
-  opacity: 0;
-  transform: translateY(40px);
-  transition: all 0.6s ease;
+  padding: 140px 40px;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-section.visible {
-  opacity: 1;
-  transform: translateY(0);
+section:not(#home) {
+  background: rgba(0, 0, 0, 0.35);
+  border-radius: 20px;
+  margin-top: 80px;
+  box-shadow: 0 0 60px rgba(0, 0, 0, 0.5);
 }
 
+/* HOME */
 #home {
-  background: linear-gradient(120deg, #3a1212, #4d1616);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   text-align: center;
 }
 
 #home h1 {
-  font-size: 56px;
-  margin-bottom: 16px;
+  font-size: 72px;
+  letter-spacing: 4px;
+  margin-bottom: 20px;
 }
 
 #home p {
   font-size: 22px;
-  margin-bottom: 24px;
-}
-
-/* BUTTONS */
-.buttons {
-  margin-top: 20px;
-}
-
-.btn {
-  display: inline-block;
-  padding: 14px 30px;
-  margin: 6px;
-  border-radius: 8px;
-  border: 2px solid #ff9999;
-  color: #ffcccc;
-  text-decoration: none;
-  transition: 0.3s;
-}
-
-.btn:hover {
-  background: #ff9999;
-  color: #1a0000;
-  transform: scale(1.05);
-}
-
-.btn.red {
-  background: #220000;
-}
-
-/* CONTENT */
-section h2 {
-  font-size: 36px;
-  margin-bottom: 16px;
-}
-
-section p,
-section li {
-  font-size: 18px;
-  line-height: 1.6;
-}
-
-/* FOOTER */
-footer {
-  background: rgba(0, 0, 0, 0.6);
-  text-align: center;
-  padding: 16px;
-}
+  color: #ffbaba;
+  margin-b
