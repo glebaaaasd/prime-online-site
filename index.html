@@ -1,47 +1,94 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prime Online Site</title>
-    
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-    
-    <!-- CSS -->
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <title>Prime Online</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-    <!-- Header -->
-    <header>
-        <div class="container">
-            <h1 class="logo">Prime Online</h1>
-            <nav>
-                <ul class="menu">
-                    <li><a href="#about">О нас</a></li>
-                    <li><a href="#services">Услуги</a></li>
-                    <li><a href="#contact">Контакты</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="container">
-            <h2>Добро пожаловать в Prime Online</h2>
-            <p>Современный сайт для вашего бизнеса или проекта</p>
-            <button onclick="scrollToSection('services')">Наши услуги</button>
-        </div>
-    </section>
+<header>
+  <div class="logo">PRIME ONLINE</div>
+  <nav>
+    <a href="#home">Главная</a>
+    <a href="#about">Об игре</a>
+    <a href="#world">Мир</a>
+    <a href="#play">Как играть</a>
+    <a href="#news">Новости</a>
+    <a href="#contact">Сообщество</a>
+  </nav>
+</header>
 
-    <!-- About Section -->
-    <section id="about">
-        <div class="container">
-            <h2>О нас</h2>
-            <p>Мы предоставляем лучшие решения для вашего онлайн-проекта.</p>
-        </div>
-    </section>
+<!-- HERO -->
+<section id="home">
+  <h1>PRIME ONLINE</h1>
+  <p>Свобода. Роль. Онлайн.</p>
 
-    <!-- Services Section -->
-    <section id="services">
+  <div class="buttons">
+    <a href="#play" class="btn">Играть</a>
+    <a href="#" class="btn">Скачать игру</a>
+    <a href="#contact" class="btn">Сообщество</a>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="block">
+    <h2>Об игре</h2>
+    <p>
+      Prime Online — онлайн RP-проект с открытым миром, фракциями,
+      экономикой и полной свободой действий.
+    </p>
+  </div>
+</section>
+
+<!-- WORLD -->
+<section id="world">
+  <div class="block">
+    <h2>Мир игры</h2>
+    <p>
+      Большой город, транспорт, бизнесы, недвижимость,
+      фракции и живое RP-сообщество.
+    </p>
+  </div>
+</section>
+
+<!-- HOW TO PLAY -->
+<section id="play">
+  <div class="block">
+    <h2>Как начать играть</h2>
+    <ol>
+      <li>Скачать клиент Prime Online</li>
+      <li>Создать аккаунт</li>
+      <li>Создать персонажа</li>
+      <li>Войти в игру</li>
+    </ol>
+  </div>
+</section>
+
+<!-- NEWS -->
+<section id="news">
+  <div class="block">
+    <h2>Новости</h2>
+    <p>Обновления, патчи и анонсы проекта.</p>
+  </div>
+</section>
+
+<!-- COMMUNITY -->
+<section id="contact">
+  <div class="block">
+    <h2>Сообщество</h2>
+    <p>Discord · Telegram · Форум</p>
+  </div>
+</section>
+
+<footer>
+  © 2026 Prime Online
+</footer>
+
+<!-- JS -->
+<script src="script.js"></script>
+</body>
+</html>
