@@ -89,3 +89,13 @@ section {
   border-radius: 16px;
   padding: 30px;
   box-shadow:
+.block {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: 0.7s ease;
+}
+
+.block.show {
+  opacity: 1;
+  transform: translateY(0);
+}
