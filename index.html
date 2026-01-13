@@ -96,22 +96,31 @@
     .feature-card:hover { transform: translateY(-10px); background: rgba(90,0,0,0.9); }
     .feature-card h3 { margin-bottom: 12px; }
 
-    /* Gallery */
-    .gallery { padding: 68px 40px; display: grid; grid-template-columns: repeat(auto-fit,minmax(220px,1fr)); gap: 18px; }
-    .gallery img { width:100%; border-radius: 10px; transition: transform .3s, box-shadow .3s; opacity:0; transform:translateY(30px); }
-    .gallery img:hover { transform: scale(1.07); box-shadow:0 10px 20px rgba(0,0,0,0.5); }
+    /* Gallery Slider */
+    .gallery-wrapper { position: relative; padding: 68px 40px; overflow: hidden; }
+    .gallery-slider { display: flex; gap: 18px; transition: transform 0.5s ease; }
+    .gallery-slider img { width: 300px; border-radius: 10px; cursor: pointer; }
+    .gallery-btn { position: absolute; top: 50%; transform: translateY(-50%); background: #b30000; border: none; padding: 10px; border-radius: 50%; cursor: pointer; z-index: 10; }
+    .gallery-btn:hover { background: #800000; }
+    .gallery-btn-left { left: 10px; }
+    .gallery-btn-right { right: 10px; }
 
     /* Trailer */
-    .trailer { padding: 68px 40px; text-align: center; opacity:0; transform:translateY(30px); }
+    .trailer { padding: 68px 40px; text-align: center; opacity:0; transform:translateY(30px); position: relative; }
     .trailer iframe { width: 80%; max-width: 910px; height: 460px; border: none; border-radius: 8px; }
+    .trailer button { margin-top: 12px; padding: 12px 28px; font-weight: 700; background: #b30000; border: none; border-radius: 6px; cursor: pointer; }
+    .trailer button:hover { background: #800000; }
 
     /* Subscribe */
     .subscribe { padding: 68px 40px; text-align: center; background: rgba(60,0,0,0.9); opacity:0; transform:translateY(30px); }
     .subscribe h2 { margin-bottom: 12px; }
     .subscribe p { margin-bottom: 18px; }
-    .subscribe input { padding: 14px; width: 320px; border: none; border-radius: 6px; margin-right: 10px; }
-    .subscribe button { padding: 14px 26px; background: #b30000; border: none; border-radius: 6px; font-weight: 700; transition:.3s; }
+    .subscribe input { padding: 14px; width: 250px; border: none; border-radius: 6px; margin-right: 10px; }
+    .subscribe button { padding: 14px 26px; background: #b30000; border: none; border-radius: 6px; font-weight: 700; transition:.3s; cursor:pointer; }
     .subscribe button:hover { background: #800000; }
+    .subscribe .social-icons { display: flex; justify-content: center; gap: 12px; margin-top: 12px; }
+    .subscribe .social-icons a { background:#b30000; padding:8px; border-radius:50%; }
+    .subscribe .social-icons a:hover { background:#800000; }
 
     /* Social fixed */
     .social-fixed { position: fixed; top: 50%; left: 10px; display:flex; flex-direction:column; gap:12px; z-index:200; }
@@ -127,6 +136,7 @@
       .hero-content h2 { font-size: 34px; }
       .trailer iframe { width: 100%; height: 260px; }
       nav { font-size: 14px; }
+      .gallery-slider img { width: 220px; }
     }
   </style>
 </head>
@@ -164,23 +174,34 @@
   <div class="feature-card"><h3>Экшен</h3><p>Транспорт, погони, миссии и PvP.</p></div>
 </section>
 
-<section id="gallery" class="gallery">
-  <img src="https://via.placeholder.com/400x240" alt="Скриншот 1">
-  <img src="https://via.placeholder.com/400x240" alt="Скриншот 2">
-  <img src="https://via.placeholder.com/400x240" alt="Скриншот 3">
-  <img src="https://via.placeholder.com/400x240" alt="Скриншот 4">
+<section id="gallery" class="gallery-wrapper">
+  <button class="gallery-btn gallery-btn-left">◀</button>
+  <div class="gallery-slider">
+    <img src="https://via.placeholder.com/400x240" alt="Скриншот 1">
+    <img src="https://via.placeholder.com/400x240" alt="Скриншот 2">
+    <img src="https://via.placeholder.com/400x240" alt="Скриншот 3">
+    <img src="https://via.placeholder.com/400x240" alt="Скриншот 4">
+  </div>
+  <button class="gallery-btn gallery-btn-right">▶</button>
 </section>
 
 <section id="trailer" class="trailer">
   <h2>Трейлер игры</h2>
   <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
+  <br>
+  <button onclick="document.querySelector('#trailer iframe').src += ''">Play</button>
 </section>
 
 <section id="subscribe" class="subscribe">
   <h2>Подписка на новости</h2>
   <p>Будь первым в бета‑тесте и получай уникальные арты!</p>
   <input type="email" placeholder="Ваш email">
-  <button>Подписаться</button>
+  <button onclick="alert('Спасибо! Ты подписан')">Подписаться</button>
+  <div class="social-icons">
+    <a href="#">Discord</a>
+    <a href="#">Telegram</a>
+    <a href="#">VK</a>
+  </div>
 </section>
 
 <script>
@@ -199,7 +220,7 @@
       }
     });
   }, {threshold: 0.2});
-  document.querySelectorAll('.feature-card, .gallery img, .trailer, .subscribe').forEach(el => observer.observe(el));
+  document.querySelectorAll('.feature-card, .gallery-slider img, .trailer, .subscribe').forEach(el => observer.observe(el));
 
   // Частицы на hero
   const canvas = document.getElementById('particles');
@@ -230,7 +251,6 @@
 
   const particlesArray = [];
   for(let i=0;i<150;i++) particlesArray.push(new Particle());
-
   function animate(){
     ctx.clearRect(0,0,canvas.width,canvas.height);
     particlesArray.forEach(p => p.update());
@@ -241,6 +261,20 @@
   window.addEventListener('resize', () => {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
+  });
+
+  // Галерея слайдер
+  const slider = document.querySelector('.gallery-slider');
+  const btnLeft = document.querySelector('.gallery-btn-left');
+  const btnRight = document.querySelector('.gallery-btn-right');
+  let offset = 0;
+  btnLeft.addEventListener('click', ()=>{
+    offset += 318; if(offset>0) offset=0;
+    slider.style.transform = `translateX(${offset}px)`;
+  });
+  btnRight.addEventListener('click', ()=>{
+    offset -= 318; if(offset<-(slider.scrollWidth - slider.clientWidth)) offset=-(slider.scrollWidth - slider.clientWidth);
+    slider.style.transform = `translateX(${offset}px)`;
   });
 </script>
 
