@@ -87,6 +87,7 @@
       font-weight: 700;
       transition: .3s;
       animation: floatButton 3s ease-in-out infinite alternate;
+      cursor: pointer;
     }
     .hero-content button:hover { background: #800000; }
 
@@ -127,6 +128,9 @@
     .social-fixed a { background:#b30000; padding:10px; border-radius:50%; transition:.3s; }
     .social-fixed a:hover { background:#800000; }
 
+    /* Profile */
+    .profile-card { display:inline-block; background: rgba(60,0,0,0.7); padding: 24px; border-radius: 10px; text-align:center; }
+
     /* Animations */
     @keyframes fadeInUp { to { opacity:1; transform: translateY(0); } }
     @keyframes floatText { from { transform: translateY(0); } to { transform: translateY(-8px); } }
@@ -161,6 +165,16 @@
   <a href="#">VK</a>
 </div>
 
+<!-- Фоновая музыка -->
+<audio id="bg-music" loop>
+  <source src="https://assets.mixkit.co/music/preview/mixkit-urban-cyberpunk-ambient-304.mp3" type="audio/mpeg">
+  Ваш браузер не поддерживает аудио.
+</audio>
+
+<button id="music-toggle" style="position:fixed; bottom:20px; right:20px; padding:10px 18px; background:#b30000; color:#fff; border:none; border-radius:6px; font-weight:700; cursor:pointer; z-index:999;">
+  🔊 Включить музыку
+</button>
+
 <section class="hero">
   <canvas id="particles"></canvas>
   <div class="hero-content">
@@ -191,8 +205,6 @@
 <section id="trailer" class="trailer">
   <h2>Трейлер игры</h2>
   <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
-  <br>
-  <button onclick="document.querySelector('#trailer iframe').src += ''">Play</button>
 </section>
 
 <section id="subscribe" class="subscribe">
@@ -220,7 +232,7 @@
 
 <section id="profile" style="padding: 68px 40px; text-align:center; background: rgba(90,0,0,0.8);">
   <h2>Профиль игрока</h2>
-  <div style="display:inline-block; background: rgba(60,0,0,0.7); padding: 24px; border-radius: 10px; text-align:center;">
+  <div class="profile-card">
     <img src="https://via.placeholder.com/120" alt="Аватар" style="border-radius:50%; margin-bottom:12px;">
     <h3>Имя игрока</h3>
     <p>Уровень: 12</p>
@@ -230,6 +242,23 @@
 </section>
 
 <script>
+  // Фоновая музыка
+  const music = document.getElementById('bg-music');
+  const btnMusic = document.getElementById('music-toggle');
+  let musicPlaying = false;
+
+  btnMusic.addEventListener('click', () => {
+    if (!musicPlaying) {
+      music.volume = 0.2; // тихо, комфортно
+      music.play();
+      btnMusic.textContent = '🔇 Выключить музыку';
+    } else {
+      music.pause();
+      btnMusic.textContent = '🔊 Включить музыку';
+    }
+    musicPlaying = !musicPlaying;
+  });
+
   // Параллакс фон hero
   window.addEventListener('scroll', () => {
     const scrolled = window.scrollY;
@@ -305,3 +334,4 @@
 
 </body>
 </html>
+
