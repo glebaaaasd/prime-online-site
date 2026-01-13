@@ -23,6 +23,36 @@ header {
   padding: 16px 40px;
   z-index: 100;
 }
+.logo-container {
+    position: relative;
+    width: 600px; /* можно менять размер */
+    margin: 50px auto;
+}
+.logo-container img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+.slogan {
+    position: absolute;
+    top: 20px;
+    width: 100%;
+    text-align: center;
+    font-size: 48px;
+    font-weight: bold;
+    color: #FF0000; /* красный */
+    text-shadow: 2px 2px 5px #000; /* для контраста */
+}
+.brand-name {
+    position: absolute;
+    bottom: 20px;
+    width: 100%;
+    text-align: center;
+    font-size: 36px;
+    font-weight: bold;
+    color: #FF0000; /* красный */
+    text-shadow: 2px 2px 5px #000;
+}
 
 .logo {
   font-size: 26px;
