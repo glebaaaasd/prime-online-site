@@ -1,94 +1,111 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Prime Online</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
-</head>
+  <title>Prime Online</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    /* --- Общие стили --- */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Roboto', sans-serif; background-color: #111; color: #fff; }
+    a { color: inherit; text-decoration: none; }
+    button { cursor: pointer; }
 
+    /* --- Хедер --- */
+    header { display: flex; justify-content: space-between; align-items: center; padding: 20px 50px; background: rgba(0,0,0,0.7); position: sticky; top: 0; z-index: 10; }
+    header h1 { font-size: 24px; font-weight: 700; }
+    nav button { margin-left: 15px; padding: 10px 20px; background-color: #e74c3c; border: none; border-radius: 5px; font-weight: 700; transition: 0.3s; }
+    nav button:hover { background-color: #c0392b; }
+
+    /* --- Главный баннер --- */
+    .hero { height: 100vh; background: url('https://via.placeholder.com/1920x1080') center/cover no-repeat; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 0 20px; }
+    .hero h2 { font-size: 48px; margin-bottom: 20px; text-shadow: 2px 2px 10px rgba(0,0,0,0.7); }
+    .hero button { font-size: 18px; padding: 15px 30px; }
+
+    /* --- Фичи --- */
+    .features { padding: 80px 50px; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; }
+    .feature-card { background: #222; padding: 30px; border-radius: 10px; text-align: center; transition: 0.3s; }
+    .feature-card:hover { transform: translateY(-10px); background: #333; }
+    .feature-card h3 { margin-bottom: 15px; }
+
+    /* --- Галерея --- */
+    .gallery { padding: 80px 50px; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+    .gallery img { width: 100%; border-radius: 10px; transition: 0.3s; }
+    .gallery img:hover { transform: scale(1.05); }
+
+    /* --- Трейлер --- */
+    .trailer { padding: 80px 50px; text-align: center; }
+    .trailer iframe { width: 80%; height: 450px; max-width: 900px; border: none; border-radius: 10px; }
+
+    /* --- Подписка --- */
+    .subscribe { padding: 80px 50px; text-align: center; background: #1a1a1a; }
+    .subscribe input { padding: 15px; width: 300px; max-width: 80%; border: none; border-radius: 5px; margin-right: 10px; }
+    .subscribe button { padding: 15px 25px; background-color: #e74c3c; border: none; border-radius: 5px; font-weight: 700; }
+
+    /* --- Адаптивность --- */
+    @media(max-width: 768px){
+      .hero h2 { font-size: 36px; }
+      header { flex-direction: column; align-items: flex-start; }
+      nav { margin-top: 10px; }
+    }
+  </style>
+</head>
 <body>
 
-<header>
-  <div class="logo">PRIME ONLINE</div>
-  <nav>
-    <a href="#home">Главная</a>
-    <a href="#about">Об игре</a>
-    <a href="#world">Мир</a>
-    <a href="#play">Как играть</a>
-    <a href="#news">Новости</a>
-    <a href="#contact">Сообщество</a>
-  </nav>
-</header>
+  <header>
+    <h1>Prime Online</h1>
+    <nav>
+      <button onclick="document.getElementById('trailer').scrollIntoView({behavior:'smooth'})">Смотреть трейлер</button>
+      <button onclick="document.getElementById('subscribe').scrollIntoView({behavior:'smooth'})">Подписаться</button>
+    </nav>
+  </header>
 
-<!-- HERO -->
-<section id="home">
-  <h1>PRIME ONLINE</h1>
-  <p>Свобода. Роль. Онлайн.</p>
+  <section class="hero">
+    <h2>Добро пожаловать в Prime Online</h2>
+    <p>Твой город, твои правила.</p>
+    <button onclick="document.getElementById('trailer').scrollIntoView({behavior:'smooth'})">Смотреть трейлер</button>
+  </section>
 
-  <div class="buttons">
-    <a href="#play" class="btn">Играть</a>
-    <a href="#" class="btn">Скачать игру</a>
-    <a href="#contact" class="btn">Сообщество</a>
-  </div>
-</section>
+  <section class="features">
+    <div class="feature-card">
+      <h3>Свободный город</h3>
+      <p>Исследуй огромный мир с динамическими событиями.</p>
+    </div>
+    <div class="feature-card">
+      <h3>Миссии и задания</h3>
+      <p>Выполняй захватывающие миссии и зарабатывай репутацию.</p>
+    </div>
+    <div class="feature-card">
+      <h3>Транспорт и техника</h3>
+      <p>Разнообразный транспорт: машины, мотоциклы, вертолеты.</p>
+    </div>
+    <div class="feature-card">
+      <h3>Онлайн мир</h3>
+      <p>Играй с друзьями и другими игроками в реальном времени.</p>
+    </div>
+  </section>
 
-<!-- ABOUT -->
-<section id="about">
-  <div class="block">
-    <h2>Об игре</h2>
-    <p>
-      Prime Online — онлайн RP-проект с открытым миром, фракциями,
-      экономикой и полной свободой действий.
-    </p>
-  </div>
-</section>
+  <section class="gallery">
+    <img src="https://via.placeholder.com/400x250" alt="Скриншот 1">
+    <img src="https://via.placeholder.com/400x250" alt="Скриншот 2">
+    <img src="https://via.placeholder.com/400x250" alt="Скриншот 3">
+    <img src="https://via.placeholder.com/400x250" alt="Скриншот 4">
+  </section>
 
-<!-- WORLD -->
-<section id="world">
-  <div class="block">
-    <h2>Мир игры</h2>
-    <p>
-      Большой город, транспорт, бизнесы, недвижимость,
-      фракции и живое RP-сообщество.
-    </p>
-  </div>
-</section>
+  <section class="trailer" id="trailer">
+    <h2>Трейлер игры</h2>
+    <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
+  </section>
 
-<!-- HOW TO PLAY -->
-<section id="play">
-  <div class="block">
-    <h2>Как начать играть</h2>
-    <ol>
-      <li>Скачать клиент Prime Online</li>
-      <li>Создать аккаунт</li>
-      <li>Создать персонажа</li>
-      <li>Войти в игру</li>
-    </ol>
-  </div>
-</section>
+  <section class="subscribe" id="subscribe">
+    <h2>Подписка на новости</h2>
+    <input type="email" placeholder="Ваш email">
+    <button>Подписаться</button>
+    <div style="margin-top:20px;">
+      <a href="#">Discord</a> | <a href="#">VK</a> | <a href="#">Telegram</a>
+    </div>
+  </section>
 
-<!-- NEWS -->
-<section id="news">
-  <div class="block">
-    <h2>Новости</h2>
-    <p>Обновления, патчи и анонсы проекта.</p>
-  </div>
-</section>
-
-<!-- COMMUNITY -->
-<section id="contact">
-  <div class="block">
-    <h2>Сообщество</h2>
-    <p>Discord · Telegram · Форум</p>
-  </div>
-</section>
-
-<footer>
-  © 2026 Prime Online
-</footer>
-
-<!-- JS -->
-<script src="script.js"></script>
 </body>
 </html>
