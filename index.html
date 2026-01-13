@@ -165,14 +165,20 @@
   <a href="#">VK</a>
 </div>
 
-<!-- Фоновая музыка -->
-<audio id="bg-music" loop>
-  <source src="https://assets.mixkit.co/music/preview/mixkit-urban-cyberpunk-ambient-304.mp3" type="audio/mpeg">
+<!-- Фоновая музыка и звуки -->
+<audio id="bg-music" loop autoplay>
+  <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_6f0b0e8e92.mp3?filename=dark-ambient-11242.mp3" type="audio/mpeg">
   Ваш браузер не поддерживает аудио.
+</audio>
+<audio id="click-sound">
+  <source src="https://assets.mixkit.co/sfx/preview/mixkit-player-jumping-2037.mp3" type="audio/mpeg">
+</audio>
+<audio id="hover-sound">
+  <source src="https://assets.mixkit.co/sfx/preview/mixkit-game-ui-click-1114.mp3" type="audio/mpeg">
 </audio>
 
 <button id="music-toggle" style="position:fixed; bottom:20px; right:20px; padding:10px 18px; background:#b30000; color:#fff; border:none; border-radius:6px; font-weight:700; cursor:pointer; z-index:999;">
-  🔊 Включить музыку
+  🔊 Включить/Выключить музыку
 </button>
 
 <section class="hero">
@@ -245,18 +251,22 @@
   // Фоновая музыка
   const music = document.getElementById('bg-music');
   const btnMusic = document.getElementById('music-toggle');
-  let musicPlaying = false;
+  music.volume = 0.2; // тихо
+  let musicPlaying = true;
 
   btnMusic.addEventListener('click', () => {
-    if (!musicPlaying) {
-      music.volume = 0.2; // тихо, комфортно
-      music.play();
-      btnMusic.textContent = '🔇 Выключить музыку';
-    } else {
-      music.pause();
-      btnMusic.textContent = '🔊 Включить музыку';
-    }
+    if (musicPlaying) music.pause();
+    else music.play();
     musicPlaying = !musicPlaying;
+  });
+
+  // Звуки клика и hover
+  const clickSound = document.getElementById('click-sound');
+  const hoverSound = document.getElementById('hover-sound');
+
+  document.querySelectorAll('button, nav a').forEach(el => {
+    el.addEventListener('click', () => { clickSound.currentTime=0; clickSound.play(); });
+    el.addEventListener('mouseenter', () => { hoverSound.currentTime=0; hoverSound.play(); });
   });
 
   // Параллакс фон hero
@@ -283,55 +293,24 @@
   canvas.height = window.innerHeight;
 
   class Particle {
-    constructor(){
-      this.x = Math.random()*canvas.width;
-      this.y = Math.random()*canvas.height;
-      this.radius = Math.random()*2 + 1;
-      this.speedY = Math.random()*0.5 + 0.2;
-      this.alpha = Math.random()*0.5 + 0.3;
-    }
-    draw(){
-      ctx.beginPath();
-      ctx.arc(this.x, this.y, this.radius, 0, Math.PI*2);
-      ctx.fillStyle = `rgba(255,255,255,${this.alpha})`;
-      ctx.fill();
-    }
-    update(){
-      this.y -= this.speedY;
-      if(this.y < 0) this.y = canvas.height;
-      this.draw();
-    }
+    constructor(){ this.x=Math.random()*canvas.width; this.y=Math.random()*canvas.height; this.radius=Math.random()*2+1; this.speedY=Math.random()*0.5+0.2; this.alpha=Math.random()*0.5+0.3; }
+    draw(){ ctx.beginPath(); ctx.arc(this.x,this.y,this.radius,0,Math.PI*2); ctx.fillStyle=`rgba(255,255,255,${this.alpha})`; ctx.fill(); }
+    update(){ this.y -= this.speedY; if(this.y<0)this.y=canvas.height; this.draw(); }
   }
-
-  const particlesArray = [];
+  const particlesArray=[];
   for(let i=0;i<150;i++) particlesArray.push(new Particle());
-  function animate(){
-    ctx.clearRect(0,0,canvas.width,canvas.height);
-    particlesArray.forEach(p => p.update());
-    requestAnimationFrame(animate);
-  }
+  function animate(){ ctx.clearRect(0,0,canvas.width,canvas.height); particlesArray.forEach(p=>p.update()); requestAnimationFrame(animate); }
   animate();
-
-  window.addEventListener('resize', () => {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-  });
+  window.addEventListener('resize',()=>{ canvas.width=window.innerWidth; canvas.height=window.innerHeight; });
 
   // Галерея слайдер
-  const slider = document.querySelector('.gallery-slider');
-  const btnLeft = document.querySelector('.gallery-btn-left');
-  const btnRight = document.querySelector('.gallery-btn-right');
-  let offset = 0;
-  btnLeft.addEventListener('click', ()=>{
-    offset += 318; if(offset>0) offset=0;
-    slider.style.transform = `translateX(${offset}px)`;
-  });
-  btnRight.addEventListener('click', ()=>{
-    offset -= 318; if(offset<-(slider.scrollWidth - slider.clientWidth)) offset=-(slider.scrollWidth - slider.clientWidth);
-    slider.style.transform = `translateX(${offset}px)`;
-  });
+  const slider=document.querySelector('.gallery-slider');
+  const btnLeft=document.querySelector('.gallery-btn-left');
+  const btnRight=document.querySelector('.gallery-btn-right');
+  let offset=0;
+  btnLeft.addEventListener('click',()=>{ offset+=318; if(offset>0)offset=0; slider.style.transform=`translateX(${offset}px)`; });
+  btnRight.addEventListener('click',()=>{ offset-=318; if(offset<-(slider.scrollWidth - slider.clientWidth)) offset=-(slider.scrollWidth - slider.clientWidth); slider.style.transform=`translateX(${offset}px)`; });
 </script>
 
 </body>
 </html>
-
