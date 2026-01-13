@@ -5,260 +5,278 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Prime Online</title>
 
-<!-- Favicon -->
-<link rel="icon" type="image/svg+xml" href="favicon-circle-outline.svg">
-
-<!-- Google Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-
-<!-- Font Awesome -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <style>
-body {margin:0;font-family:'Roboto',sans-serif;background:#1a0000;color:#fff;scroll-behavior:smooth;overflow-x:hidden;}
-a{text-decoration:none;color:inherit;}
-header {display:flex;justify-content:space-between;align-items:center;padding:18px 40px;background:rgba(0,0,0,0.6);position:sticky;top:0;z-index:100;}
-header h1 {font-size:28px;font-weight:700;text-shadow:2px 2px 6px #000;}
-nav a {margin-left:18px;padding:10px 16px;background:#b30000;border-radius:5px;font-weight:bold;transition:.3s;display:inline-flex;align-items:center;}
-nav a i {margin-right:5px;color:#fff;transition:.3s;}
-nav a:hover {background:#800000;}
-nav a:hover i {color:#b3b3b3;}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
 
-.hero {position:relative;height:100vh;display:flex;justify-content:center;align-items:center;text-align:center;background:url('https://raw.githubusercontent.com/glebaaaasd/images1/main/2f8e20eb-0ea4-44b9-b3b3-b60b29402b56.png') center/cover no-repeat;overflow:hidden;}
-.hero::before {content:'';position:absolute;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);z-index:1;}
-#particles {position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:1;}
-.hero-content {position:relative;z-index:2;padding:0 15px;opacity:0;transform:translateY(30px);animation:fadeInUp 1.2s forwards;}
-.hero-content h2 {font-size:46px;margin-bottom:14px;text-shadow:3px 3px 10px #000;animation:floatText 3s ease-in-out infinite alternate;}
-.hero-content p {font-size:20px;margin-bottom:14px;}
-.hero-content button {margin-top:16px;padding:14px 28px;font-size:18px;background:#b30000;border:none;border-radius:6px;font-weight:700;transition:.3s;animation:floatButton 3s ease-in-out infinite alternate;cursor:pointer;}
-.hero-content button:hover {background:#800000;}
+body {
+  background: radial-gradient(circle at top, #300000, #0a0000);
+  color: #fff;
+}
 
-.features {padding:75px 40px;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:28px;}
-.feature-card {background:rgba(60,0,0,0.8);padding:24px;border-radius:10px;text-align:center;transition:.3s;opacity:0;transform:translateY(30px);}
-.feature-card:hover {transform:translateY(-10px);background:rgba(90,0,0,0.9);}
-.feature-card h3 {margin-bottom:12px;}
+/* ===== HEADER ===== */
+header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: rgba(0,0,0,0.7);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 20px;
+  z-index: 1000;
+}
 
-.gallery-wrapper {position:relative;padding:68px 40px;overflow:hidden;}
-.gallery-slider {display:flex;gap:18px;transition:transform 0.5s ease;}
-.gallery-slider img {width:300px;border-radius:10px;cursor:pointer;}
-.gallery-btn {position:absolute;top:50%;transform:translateY(-50%);background:#b30000;border:none;padding:10px;border-radius:50%;cursor:pointer;z-index:10;}
-.gallery-btn:hover {background:#800000;}
-.gallery-btn-left {left:10px;}
-.gallery-btn-right {right:10px;}
+.logo {
+  font-size: 22px;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
 
-.trailer {padding:68px 40px;text-align:center;opacity:0;transform:translateY(30px);position:relative;}
-.trailer iframe {width:80%;max-width:910px;height:460px;border:none;border-radius:8px;}
-.trailer button {margin-top:12px;padding:12px 28px;font-weight:700;background:#b30000;border:none;border-radius:6px;cursor:pointer;}
-.trailer button:hover {background:#800000;}
+nav {
+  display: flex;
+  gap: 18px;
+}
 
-.subscribe {padding:68px 40px;text-align:center;background:rgba(60,0,0,0.9);opacity:0;transform:translateY(30px);}
-.subscribe h2 {margin-bottom:12px;}
-.subscribe p {margin-bottom:18px;}
-.subscribe input {padding:14px;width:250px;border:none;border-radius:6px;margin-right:10px;}
-.subscribe button {padding:14px 26px;background:#b30000;border:none;border-radius:6px;font-weight:700;transition:.3s;cursor:pointer;}
-.subscribe button:hover {background:#800000;}
+nav a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 16px;
+  opacity: 0.8;
+}
 
-.profile-card {display:inline-block;background: rgba(60,0,0,0.7);padding:24px;border-radius:10px;text-align:center;}
-.profile-card button {padding:10px 22px; background:#b30000; border:none; border-radius:6px; color:#fff; font-weight:700; cursor:pointer; transition:.3s;}
-.profile-card button:hover {background:#800000; transform:scale(1.05);}
+nav a:hover {
+  opacity: 1;
+}
 
-#hamburger {display:none;flex-direction:column;cursor:pointer;gap:4px;}
-#hamburger div {width:25px;height:3px;background:#fff;}
+/* Гамбургер */
+#hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+}
 
-@keyframes fadeInUp {to{opacity:1;transform:translateY(0);}}
-@keyframes floatText {from{transform:translateY(0);}to{transform:translateY(-8px);}}
-@keyframes floatButton {from{transform:translateY(0);}to{transform:translateY(-6px);}}
+#hamburger div {
+  width: 26px;
+  height: 3px;
+  background: #fff;
+}
 
+/* ===== HERO ===== */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 100px 20px 40px;
+}
+
+.hero h1 {
+  font-size: 42px;
+  margin-bottom: 12px;
+}
+
+.hero p {
+  font-size: 18px;
+  opacity: 0.8;
+  margin-bottom: 20px;
+}
+
+.hero button {
+  padding: 14px 26px;
+  font-size: 18px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  background: linear-gradient(135deg,#b30000,#700000);
+  color: #fff;
+}
+
+/* ===== SECTIONS ===== */
+section {
+  padding: 60px 20px;
+  max-width: 1100px;
+  margin: auto;
+}
+
+section h2 {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+/* ===== FEATURES ===== */
+.features {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 20px;
+}
+
+.feature {
+  background: rgba(0,0,0,0.5);
+  padding: 20px;
+  border-radius: 12px;
+  text-align: center;
+}
+
+/* ===== SUBSCRIBE ===== */
+.subscribe {
+  text-align: center;
+}
+
+.subscribe input {
+  padding: 12px;
+  width: 260px;
+  max-width: 90%;
+  border-radius: 6px;
+  border: none;
+  margin-bottom: 10px;
+}
+
+.subscribe button {
+  padding: 12px 22px;
+  border: none;
+  border-radius: 6px;
+  background: linear-gradient(135deg,#b30000,#700000);
+  color: #fff;
+  cursor: pointer;
+}
+
+/* ===== SOCIAL BUTTONS ===== */
 .social-buttons {
   position: fixed;
-  bottom: 20px;
   right: 20px;
+  bottom: 20px;
   display: flex;
   flex-direction: column;
   gap: 12px;
   z-index: 999;
 }
+
 .social-buttons a {
+  width: 52px;
+  height: 52px;
   display: flex;
-  justify-content: center;
   align-items: center;
-  width: 50px;
-  height: 50px;
-  background: linear-gradient(135deg,#b30000,#800000);
+  justify-content: center;
+  background: linear-gradient(135deg,#b30000,#700000);
   border-radius: 50%;
-  color:#fff;
-  font-size:22px;
-  text-decoration:none;
-  transition: transform 0.2s, box-shadow 0.2s;
-  box-shadow:0 4px 8px rgba(0,0,0,0.4);
+  color: #fff;
+  font-size: 22px;
+  text-decoration: none;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+  transition: 0.2s;
 }
+
 .social-buttons a:hover {
   transform: scale(1.15);
-  box-shadow:0 6px 12px rgba(0,0,0,0.5);
 }
 
-/* Мобильные стили */
+/* ===== MOBILE ===== */
 @media(max-width:768px){
-  header {flex-direction:row;justify-content:space-between;align-items:center;padding:12px 16px;}
-  #hamburger {display:flex;cursor:pointer;flex-direction:column;gap:5px;}
-  #hamburger div {width:28px;height:3px;background:#fff;}
-  nav {display:none;flex-direction:column;width:100%;background:rgba(0,0,0,0.95);position:absolute;top:60px;left:0;padding:10px 0;z-index:200;}
-  nav.show {display:flex;}
-  nav a {margin:8px 0;padding:14px 20px;width:100%;font-size:18px;text-align:center;border-radius:0;}
+  nav {
+    display: none;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    background: rgba(0,0,0,0.95);
+    flex-direction: column;
+    padding: 10px 0;
+  }
 
-  .hero-content h2 {font-size:26px;margin-bottom:10px;}
-  .hero-content p {font-size:16px;margin-bottom:12px;}
-  .hero-content button {font-size:18px;padding:14px 20px;}
+  nav.show {
+    display: flex;
+  }
 
-  .features {grid-template-columns:1fr;padding:40px 16px;gap:16px;}
-  .feature-card {padding:20px;font-size:14px;}
+  nav a {
+    padding: 14px;
+    text-align: center;
+    font-size: 18px;
+  }
 
-  .gallery-slider img {width:100%;max-width:none;border-radius:8px;}
-  .gallery-btn {padding:14px;}
+  #hamburger {
+    display: flex;
+  }
 
-  .trailer iframe {width:100%;height:200px;}
-  .subscribe input, .subscribe button {width:90%;margin:6px auto;display:block;}
-  .subscribe .social-icons {display:none;} /* убираем старые кнопки */
-  .social-buttons {position:static; flex-direction:row; justify-content:center; gap:14px; margin-top:20px;}
-  .social-buttons a {width:60px;height:60px;font-size:26px;}
-  #donate button, .profile-card button {width:90%;margin:8px auto;display:block;}
+  .hero h1 {
+    font-size: 30px;
+  }
+
+  .features {
+    grid-template-columns: 1fr;
+  }
+
+  .social-buttons {
+    position: static;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 20px;
+  }
 }
 </style>
 </head>
+
 <body>
 
 <header>
-  <h1>PRIME ONLINE</h1>
-  <div id="hamburger">
-    <div></div><div></div><div></div>
-  </div>
-  <nav>
-    <a href="#features"><i class="fas fa-cogs"></i> Фичи</a>
-    <a href="#gallery"><i class="fas fa-image"></i> Галерея</a>
-    <a href="#trailer"><i class="fas fa-film"></i> Трейлер</a>
-    <a href="#subscribe"><i class="fas fa-envelope"></i> Подписка</a>
-    <a href="#forum"><i class="fas fa-comments"></i> Форум</a>
-    <a href="#donate"><i class="fas fa-gift"></i> Донат</a>
-    <a href="#profile"><i class="fas fa-user"></i> Профиль</a>
+  <div class="logo">Prime Online</div>
+
+  <nav id="nav">
+    <a href="#">Главная</a>
+    <a href="#about">Об игре</a>
+    <a href="#subscribe">Подписка</a>
+    <a href="profile/">Профиль</a>
   </nav>
+
+  <div id="hamburger">
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
 </header>
 
-<!-- Социальные кнопки -->
-<div class="social-buttons">
-  <a href="#" title="Discord"><i class="fab fa-discord"></i></a>
-  <a href="#" title="Telegram"><i class="fab fa-telegram"></i></a>
-  <a href="#" title="VK"><i class="fab fa-vk"></i></a>
+<div class="hero">
+  <div>
+    <h1>Prime Online</h1>
+    <p>Онлайн-игра нового поколения</p>
+    <button>Смотреть трейлер</button>
+  </div>
 </div>
 
-<!-- Фоновая музыка -->
-<audio id="bg-music" loop>
-  <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_6f0b0e8e92.mp3?filename=dark-ambient-11242.mp3" type="audio/mpeg">
-</audio>
-<button id="music-toggle" style="position:fixed; bottom:20px; right:100px; padding:10px 18px; background:#b30000; color:#fff; border:none; border-radius:6px; font-weight:700; cursor:pointer; z-index:999;">
-  🔊 Музыка
-</button>
-
-<section class="hero">
-  <canvas id="particles"></canvas>
-  <div class="hero-content">
-    <h2>Свобода. Роль. Онлайн.</h2>
-    <p>Подпишись и получай эксклюзивные новости о Prime Online!</p>
-    <button onclick="document.getElementById('trailer').scrollIntoView({behavior:'smooth'})">Смотреть трейлер</button>
+<section id="about">
+  <h2>Особенности</h2>
+  <div class="features">
+    <div class="feature">Открытый мир</div>
+    <div class="feature">Своя экономика</div>
+    <div class="feature">Мультиплеер</div>
   </div>
-</section>
-
-<section id="features" class="features">
-  <div class="feature-card"><h3>Открытый мир</h3><p>Исследуй город и взаимодействуй с игроками.</p></div>
-  <div class="feature-card"><h3>Экономика</h3><p>Бизнес, работа, недвижимость и свободный обмен.</p></div>
-  <div class="feature-card"><h3>Сообщество</h3><p>Фракции, RP-сервер, события и кланы.</p></div>
-  <div class="feature-card"><h3>Экшен</h3><p>Транспорт, погони, миссии и PvP.</p></div>
-</section>
-
-<section id="gallery" class="gallery-wrapper">
-  <button class="gallery-btn gallery-btn-left">◀</button>
-  <div class="gallery-slider">
-    <img src="https://via.placeholder.com/400x240" alt="Скриншот 1">
-    <img src="https://via.placeholder.com/400x240" alt="Скриншот 2">
-    <img src="https://via.placeholder.com/400x240" alt="Скриншот 3">
-    <img src="https://via.placeholder.com/400x240" alt="Скриншот 4">
-  </div>
-  <button class="gallery-btn gallery-btn-right">▶</button>
-</section>
-
-<section id="trailer" class="trailer">
-  <h2>Трейлер игры</h2>
-  <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
 </section>
 
 <section id="subscribe" class="subscribe">
-  <h2>Подписка на новости</h2>
-  <p>Будь первым в бета‑тесте и получай уникальные арты!</p>
-  <input type="email" placeholder="Ваш email">
-  <button onclick="alert('Спасибо! Ты подписан')">Подписаться</button>
-</section>
+  <h2>Подписка</h2>
+  <input type="email" placeholder="Ваш email"><br>
+  <button>Подписаться</button>
 
-<section id="forum" style="padding: 68px 40px; text-align:center; background: rgba(50,0,0,0.8);">
-  <h2>Форум</h2>
-  <p>Скоро здесь будет форум для общения игроков.</p>
-</section>
-
-<section id="donate" style="padding: 68px 40px; text-align:center; background: rgba(70,0,0,0.8);">
-  <h2>Донат</h2>
-  <p>Скоро можно будет поддержать проект и получить бонусы!</p>
-  <button>Перейти к донату</button>
-</section>
-
-<section id="profile" style="padding: 68px 40px; text-align:center; background: rgba(90,0,0,0.8);">
-  <h2>Профиль игрока</h2>
-  <div class="profile-card">
-    <img src="https://via.placeholder.com/120" alt="Аватар" style="border-radius:50%; margin-bottom:12px;">
-    <h3>Имя игрока</h3>
-    <p>Уровень: 12</p>
-    <p>Баланс: 1500 монет</p>
-    <button>Редактировать профиль</button>
+  <div class="social-buttons">
+    <a href="#"><i class="fab fa-discord"></i></a>
+    <a href="#"><i class="fab fa-telegram"></i></a>
+    <a href="#"><i class="fab fa-vk"></i></a>
   </div>
 </section>
 
 <script>
-// Гамбургер меню
 const hamburger = document.getElementById('hamburger');
-const nav = document.querySelector('nav');
-hamburger.addEventListener('click', ()=>{ nav.classList.toggle('show'); });
-
-// Музыка
-const music=document.getElementById('bg-music');
-const btnMusic=document.getElementById('music-toggle');
-music.volume=0.2;
-let musicPlaying=false;
-document.body.addEventListener('click',function initMusic(){
-  if(!musicPlaying){ music.play(); musicPlaying=true; }
-  document.body.removeEventListener('click', initMusic);
-});
-btnMusic.addEventListener('click',()=>{ if(music.paused) music.play(); else music.pause(); });
-
-// Параллакс hero
-window.addEventListener('scroll',()=>{ const scrolled=window.scrollY; document.querySelector('.hero').style.backgroundPosition=`center ${scrolled*0.3}px`; });
-
-// Анимация появления секций
-const observer=new IntersectionObserver(entries=>{ entries.forEach(entry=>{ if(entry.isIntersecting){ entry.target.style.opacity=1; entry.target.style.transform='translateY(0)'; } });},{threshold:0.2});
-document.querySelectorAll('.feature-card, .gallery-slider img, .trailer, .subscribe').forEach(el=>observer.observe(el));
-
-// Частицы
-const canvas=document.getElementById('particles');const ctx=canvas.getContext('2d');canvas.width=window.innerWidth;canvas.height=window.innerHeight;
-class Particle{constructor(){this.x=Math.random()*canvas.width;this.y=Math.random()*canvas.height;this.radius=Math.random()*2+1;this.speedY=Math.random()*0.2+0.2;this.alpha=Math.random()*0.5+0.3;}draw(){ctx.beginPath();ctx.arc(this.x,this.y,this.radius,0,Math.PI*2);ctx.fillStyle=`rgba(255,255,255,${this.alpha})`;ctx.fill();}update(){this.y-=this.speedY;if(this.y<0)this.y=canvas.height;this.draw();}}
-const particlesArray=[];for(let i=0;i<150;i++)particlesArray.push(new Particle());
-function animate(){ctx.clearRect(0,0,canvas.width,canvas.height);particlesArray.forEach(p=>p.update());requestAnimationFrame(animate);}
-animate();window.addEventListener('resize',()=>{canvas.width=window.innerWidth;canvas.height=window.innerHeight;});
-
-// Галерея слайдер
-const slider=document.querySelector('.gallery-slider');
-const btnLeft=document.querySelector('.gallery-btn-left');
-const btnRight=document.querySelector('.gallery-btn-right');
-let offset=0;
-btnLeft.addEventListener('click',()=>{ offset+=318;if(offset>0)offset=0;slider.style.transform=`translateX(${offset}px)`; });
-btnRight.addEventListener('click',()=>{ offset-=318;if(offset<-(slider.scrollWidth-slider.clientWidth))offset=-(slider.scrollWidth-slider.clientWidth);slider.style.transform=`translateX(${offset}px)`; });
+const nav = document.getElementById('nav');
+hamburger.onclick = () => nav.classList.toggle('show');
 </script>
 
 </body>
 </html>
-
